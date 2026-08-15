@@ -1,0 +1,1892 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f2f6ff;
+    color: #222;
+    text-align: center;
+}
+
+.page {
+    padding: 35px 20px;
+}
+
+h1 {
+    color: #123f70;
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 35px;
+}
+
+button {
+    background-color: #123f70;
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 25px;
+}
+
+button:hover {
+    background-color: #1d5a91;
+}
+
+
+/* TRAFFIC NETWORK */
+
+.network {
+    width: 600px;
+    height: 450px;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+/* INTERSECTIONS */
+
+.intersection {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    border: 4px solid #123f70;
+    border-radius: 50%;
+    background-color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+    font-weight: bold;
+    color: #123f70;
+    z-index: 3;
+}
+
+
+/* NODE POSITIONS */
+
+.node-a {
+    top: 20px;
+    left: 267px;
+}
+
+.node-b {
+    top: 190px;
+    left: 80px;
+}
+
+.node-c {
+    top: 190px;
+    right: 80px;
+}
+
+.node-d {
+    bottom: 20px;
+    left: 267px;
+}
+
+
+/* ROADS */
+
+.road {
+    position: absolute;
+    height: 12px;
+    background-color: #555;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+
+/* A → B */
+
+.road-1 {
+    width: 235px;
+    top: 150px;
+    left: 110px;
+    transform: rotate(-40deg);
+}
+
+
+/* A → C */
+
+.road-2 {
+    width: 235px;
+    top: 150px;
+    right: 110px;
+    transform: rotate(40deg);
+}
+
+
+/* B → C */
+
+.road-3 {
+    width: 390px;
+    top: 220px;
+    left: 105px;
+}
+
+
+/* B → D */
+
+.road-4 {
+    width: 235px;
+    bottom: 150px;
+    left: 110px;
+    transform: rotate(40deg);
+}
+
+
+/* C → D */
+
+.road-5 {
+    width: 235px;
+    bottom: 150px;
+    right: 110px;
+    transform: rotate(-40deg);
+}
+
+
+/* FLOW LABELS */
+
+.flow {
+    position: absolute;
+    z-index: 4;
+
+    background-color: #f2f6ff;
+    padding: 3px 8px;
+
+    font-size: 22px;
+    font-weight: bold;
+    color: #123f70;
+}
+
+
+/* LABEL POSITIONS */
+
+.flow-1 {
+    top: 105px;
+    left: 170px;
+}
+
+.flow-2 {
+    top: 105px;
+    right: 170px;
+}
+
+.flow-3 {
+    top: 195px;
+    left: 285px;
+}
+
+.flow-4 {
+    bottom: 105px;
+    left: 170px;
+}
+
+.flow-5 {
+    bottom: 105px;
+    right: 170px;
+}
+
+
+/* INFORMATION BOX */
+
+.info-box {
+    width: 550px;
+    margin: 10px auto;
+    padding: 15px;
+
+    background-color: white;
+    border: 2px solid #c9dcf5;
+    border-radius: 10px;
+
+    color: #444;
+}
+
+.info-box p {
+    margin: 8px;
+    font-size: 17px;
+}
+/* TRAFFIC NETWORK SVG */
+
+.network-container {
+    width: 600px;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.traffic-network {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+/* Roads */
+
+.road-line {
+    stroke: #555;
+    stroke-width: 14;
+    stroke-linecap: round;
+}
+
+
+/* Intersection circles */
+
+.intersection-circle {
+    fill: white;
+    stroke: #123f70;
+    stroke-width: 5;
+}
+
+
+/* A, B, C, D */
+
+.node-label {
+    font-family: Arial, sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    fill: #123f70;
+}
+
+
+/* x1, x2, x3, x4, x5 */
+
+.flow-label {
+    font-family: Arial, sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    fill: #123f70;
+}
+
+/* TRAFFIC INPUT SCREEN */
+
+.subtitle {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.input-card {
+    width: 500px;
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 30px;
+
+    background-color: white;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+
+    text-align: left;
+}
+
+.input-card label {
+    display: block;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    color: #123f70;
+
+    margin-top: 18px;
+    margin-bottom: 8px;
+}
+
+.input-card label:first-child {
+    margin-top: 0;
+}
+
+.input-card label span {
+    display: block;
+
+    font-size: 13px;
+    font-weight: normal;
+
+    color: #777;
+
+    margin-top: 3px;
+}
+
+.input-card input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 12px;
+
+    font-size: 17px;
+
+    border: 2px solid #d5e2f2;
+    border-radius: 8px;
+
+    outline: none;
+}
+
+.input-card input:focus {
+    border-color: #123f70;
+}
+
+/* EQUATION SCREEN */
+
+.equation-card,
+.matrix-card {
+    width: 600px;
+    max-width: 90%;
+
+    margin: 25px auto;
+    padding: 25px;
+
+    background-color: white;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.equation-card h3,
+.matrix-card h3 {
+    color: #123f70;
+    margin-top: 0;
+}
+
+.equation {
+    font-size: 25px;
+    margin: 18px;
+    font-family: "Times New Roman", serif;
+}
+
+.matrix-equation {
+    font-size: 32px;
+    font-weight: bold;
+    color: #123f70;
+    margin: 20px;
+}
+
+.matrix-description {
+    color: #555;
+    font-size: 17px;
+}
+
+/* GAUSS-JORDAN STEPS */
+
+.steps-container {
+    width: 700px;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.step-card {
+    background-color: white;
+
+    margin: 20px auto;
+    padding: 20px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.step-card h3 {
+    color: #123f70;
+    margin-top: 0;
+}
+
+
+.matrix-display {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 15px;
+}
+
+
+.matrix-table {
+    border-collapse: collapse;
+
+    font-family: "Times New Roman", serif;
+    font-size: 24px;
+}
+
+
+.matrix-table td {
+    padding: 8px 18px;
+    text-align: center;
+}
+
+
+.matrix-table td.separator {
+    border-left: 3px solid #123f70;
+    padding-left: 22px;
+}
+
+
+.result-card {
+    width: 600px;
+    max-width: 90%;
+
+    margin: 30px auto;
+    padding: 25px;
+
+    background-color: white;
+
+    border-radius: 15px;
+
+    border: 2px solid #c9dcf5;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+.result-card h2 {
+    color: #123f70;
+}
+
+
+.result-value {
+    font-family: "Times New Roman", serif;
+
+    font-size: 27px;
+
+    margin: 15px;
+
+    color: #123f70;
+    font-weight: bold;
+}
+
+/* =========================================
+   MODERN TRAFFIC RESULTS DASHBOARD
+   ========================================= */
+
+.dashboard {
+    min-height: 100vh;
+    background: #eef4fb;
+    padding-bottom: 40px;
+}
+
+
+/* HEADER */
+
+.dashboard-header {
+    background: linear-gradient(135deg, #0d3158, #18558b);
+    color: white;
+
+    padding: 25px 8%;
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    text-align: left;
+}
+
+.dashboard-header h1 {
+    color: white;
+    margin: 0;
+    font-size: 32px;
+}
+
+.dashboard-header p {
+    color: #d8e8f7;
+    margin: 5px 0 0;
+}
+
+.traffic-icon {
+    font-size: 45px;
+}
+
+
+/* SUMMARY */
+
+.summary-banner {
+    width: 85%;
+    max-width: 1100px;
+
+    margin: 30px auto 25px;
+
+    padding: 25px 30px;
+
+    background: white;
+
+    border-radius: 16px;
+
+    box-shadow: 0 6px 20px rgba(20, 55, 90, 0.08);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    text-align: left;
+}
+
+.banner-label {
+    font-size: 12px;
+    font-weight: bold;
+    color: #72849a;
+    letter-spacing: 1px;
+}
+
+.summary-banner h2 {
+    margin: 6px 0 0;
+    color: #163f68;
+    font-size: 25px;
+}
+
+.status-badge {
+    background: #e0f4e7;
+    color: #21743b;
+
+    padding: 10px 16px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+/* SECTION TITLE */
+
+.section-title {
+    color: #163f68;
+    font-size: 25px;
+
+    margin: 30px auto 18px;
+
+    width: 85%;
+    max-width: 1100px;
+
+    text-align: left;
+}
+
+
+/* TRAFFIC CARDS */
+
+.traffic-results {
+    width: 85%;
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 22px;
+}
+
+.traffic-card {
+    background: white;
+
+    border-radius: 16px;
+
+    padding: 25px;
+
+    text-align: left;
+
+    box-shadow:
+        0 6px 20px rgba(20, 55, 90, 0.08);
+
+    border-top: 5px solid #6aa8d8;
+}
+
+.normal-card {
+    border-top-color: #32a852;
+}
+
+.moderate-card {
+    border-top-color: #e3a72f;
+}
+
+.high-card {
+    border-top-color: #e14b4b;
+}
+
+.card-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.road-icon {
+    font-size: 24px;
+}
+
+.road-name {
+    font-size: 15px;
+    font-weight: bold;
+    color: #52677d;
+    letter-spacing: 1px;
+}
+
+.traffic-number {
+    font-size: 48px;
+
+    font-weight: bold;
+
+    color: #123f70;
+
+    margin-top: 20px;
+}
+
+.unit {
+    color: #7b8998;
+    font-size: 14px;
+}
+
+.status {
+    display: inline-block;
+
+    margin-top: 18px;
+
+    padding: 7px 13px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+.normal {
+    background: #e0f4e7;
+    color: #21743b;
+}
+
+.moderate {
+    background: #fff0ca;
+    color: #85620d;
+}
+
+.high {
+    background: #ffe0e0;
+    color: #ae3030;
+}
+
+
+/* RECOMMENDATION */
+
+.recommendation-card {
+    width: 85%;
+    max-width: 1100px;
+
+    margin: 30px auto;
+
+    padding: 28px;
+
+    box-sizing: border-box;
+
+    background: linear-gradient(
+        135deg,
+        #fff9e6,
+        #ffffff
+    );
+
+    border: 1px solid #f0d98b;
+
+    border-radius: 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    text-align: left;
+
+    box-shadow:
+        0 6px 20px rgba(20, 55, 90, 0.06);
+}
+
+.recommendation-icon {
+    font-size: 55px;
+}
+
+.recommendation-label {
+    font-size: 12px;
+
+    font-weight: bold;
+
+    color: #9a7415;
+
+    letter-spacing: 1px;
+}
+
+.recommendation-content h2 {
+    margin: 7px 0;
+
+    color: #163f68;
+
+    font-size: 30px;
+}
+
+.recommendation-content p {
+    margin: 0;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    color: #555;
+}
+
+.recommendation-text {
+    margin-top: 10px;
+
+    color: #667788;
+
+    line-height: 1.5;
+}
+
+
+/* INSIGHT */
+
+.insight-card {
+    width: 85%;
+    max-width: 1100px;
+
+    margin: 25px auto;
+
+    padding: 22px;
+
+    box-sizing: border-box;
+
+    background: #eaf3fc;
+
+    border-left: 5px solid #2475b8;
+
+    border-radius: 10px;
+
+    text-align: left;
+}
+
+.insight-card h3 {
+    color: #164c7b;
+    margin-top: 0;
+}
+
+.insight-card p {
+    color: #526577;
+    line-height: 1.6;
+}
+
+
+/* BUTTON */
+
+.action-buttons {
+    text-align: center;
+
+    margin-top: 30px;
+}
+
+.action-buttons button {
+    background: #123f70;
+
+    color: white;
+
+    border: none;
+
+    padding: 14px 28px;
+
+    border-radius: 9px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.action-buttons button:hover {
+    background: #1c5b92;
+
+    transform: translateY(-2px);
+}
+
+
+/* FOOTER */
+
+.footer-text {
+    color: #8795a3;
+
+    font-size: 13px;
+
+    margin-top: 35px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    .traffic-results {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-banner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .recommendation-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* =========================================
+   INTERACTIVE TRAFFIC MAP
+   ========================================= */
+
+.interactive-map {
+    width: 85%;
+    max-width: 900px;
+
+    margin: 0 auto 30px;
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        0 6px 20px rgba(20, 55, 90, 0.08);
+}
+
+.result-network {
+    width: 100%;
+    max-width: 700px;
+
+    display: block;
+
+    margin: auto;
+}
+
+.result-road {
+    stroke: #555;
+
+    stroke-width: 13;
+
+    stroke-linecap: round;
+
+    transition: 0.3s;
+}
+
+.recommended-road {
+    stroke: #32a852;
+
+    stroke-width: 19;
+
+    filter:
+        drop-shadow(0 0 7px rgba(50, 168, 82, 0.6));
+}
+
+.result-node {
+    fill: white;
+
+    stroke: #123f70;
+
+    stroke-width: 6;
+}
+
+.result-node-text {
+    fill: #123f70;
+
+    font-size: 25px;
+
+    font-weight: bold;
+}
+
+.flow-box {
+    stroke-width: 2;
+}
+
+.low-box {
+    fill: #e0f4e7;
+
+    stroke: #32a852;
+}
+
+.medium-box {
+    fill: #fff0ca;
+
+    stroke: #e3a72f;
+}
+
+.high-box {
+    fill: #ffe0e0;
+
+    stroke: #e14b4b;
+}
+
+.neutral-box {
+    fill: #eef2f6;
+
+    stroke: #9aa8b5;
+}
+
+.flow-road-name {
+    font-size: 14px;
+
+    font-weight: bold;
+
+    fill: #52677d;
+}
+
+.flow-value {
+    font-size: 16px;
+
+    font-weight: bold;
+
+    fill: #163f68;
+}
+
+.map-legend {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 25px;
+
+    flex-wrap: wrap;
+
+    margin-top: 15px;
+
+    color: #647586;
+
+    font-size: 13px;
+}
+
+
+/* CHOOSE ROAD BUTTON */
+
+.choose-road-button {
+    margin-top: 18px;
+
+    background: #238447;
+
+    color: white;
+
+    border: none;
+
+    padding: 13px 22px;
+
+    border-radius: 9px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.choose-road-button:hover {
+    background: #1b6c39;
+
+    transform: translateY(-2px);
+}
+
+
+/* SELECTION SCREEN */
+
+.selection-success {
+    width: 600px;
+
+    max-width: 85%;
+
+    margin: 70px auto;
+
+    padding: 45px;
+
+    box-sizing: border-box;
+
+    background: white;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 30px rgba(20, 55, 90, 0.1);
+
+    text-align: center;
+}
+
+.selection-icon {
+    width: 75px;
+
+    height: 75px;
+
+    margin: auto;
+
+    border-radius: 50%;
+
+    background: #e0f4e7;
+
+    color: #238447;
+
+    font-size: 48px;
+
+    line-height: 75px;
+
+    font-weight: bold;
+}
+
+.selection-success h2 {
+    color: #163f68;
+
+    font-size: 32px;
+
+    margin-top: 25px;
+}
+
+.selected-flow {
+    font-size: 26px;
+
+    font-weight: bold;
+
+    color: #238447;
+}
+
+/* =========================================
+   PROJECT TEAM CARD
+   ========================================= */
+
+.project-team {
+    width: 600px;
+    max-width: 90%;
+
+    margin: 35px auto 0;
+
+    padding: 25px 30px;
+
+    box-sizing: border-box;
+
+    background: linear-gradient(
+        135deg,
+        #ffffff,
+        #eef6ff
+    );
+
+    border-radius: 20px;
+
+    border: 2px solid #b9d8f5;
+
+    box-shadow:
+        0 10px 30px rgba(18, 63, 112, 0.12);
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+/* Decorative top strip */
+
+.project-team::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 6px;
+
+    background: linear-gradient(
+        90deg,
+        #123f70,
+        #2f80c0,
+        #38a169,
+        #e3a72f
+    );
+}
+
+
+/* TITLE */
+
+.team-title {
+    margin-top: 5px;
+
+    color: #123f70;
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+
+/* SUBTITLE */
+
+.team-subtitle {
+    margin-top: 5px;
+
+    color: #718096;
+
+    font-size: 14px;
+}
+
+
+/* MEMBERS */
+
+.team-members {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+
+/* MEMBER CARD */
+
+.member {
+    padding: 15px 10px;
+
+    background: white;
+
+    border-radius: 14px;
+
+    border: 1px solid #dce9f5;
+
+    box-shadow:
+        0 4px 12px rgba(18, 63, 112, 0.06);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition: 0.2s;
+}
+
+
+.member:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 8px 18px rgba(18, 63, 112, 0.12);
+}
+
+
+/* ICON */
+
+.member-icon {
+    font-size: 25px;
+
+    margin-bottom: 8px;
+}
+
+
+/* NAME */
+
+.member strong {
+    display: block;
+
+    color: #163f68;
+
+    font-size: 14px;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* REGISTER NUMBER */
+
+.member small {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #7b8998;
+
+    font-size: 12px;
+}
+
+
+/* COURSE */
+
+.course-code {
+    margin-top: 20px;
+
+    padding-top: 15px;
+
+    border-top: 1px solid #dce9f5;
+
+    color: #28608e;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    letter-spacing: 0.4px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .team-members {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* =========================================
+   MEMBER PROFILE POPUP
+   ========================================= */
+
+.profile-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(10, 35, 65, 0.55);
+
+    backdrop-filter: blur(7px);
+
+}
+
+
+.profile-modal {
+
+    width: 600px;
+
+    max-width: 95%;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: white;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0, 0, 0, 0.25);
+
+    position: relative;
+
+    overflow-x: hidden;
+
+}
+
+
+/* PROFILE HEADER */
+
+.profile-header {
+
+    padding: 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #123f70,
+            #2868ad
+        );
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+
+.profile-header::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+
+    height: 180px;
+
+    border-radius: 50%;
+
+    right: -60px;
+
+    top: -80px;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+}
+
+
+.profile-avatar {
+
+    width: 80px;
+
+    height: 80px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: white;
+
+    font-size: 42px;
+
+    box-shadow:
+        0 5px 15px
+        rgba(0, 0, 0, 0.15);
+
+}
+
+
+.profile-header h2 {
+
+    margin: 0;
+
+    font-size: 28px;
+
+}
+
+
+.profile-header p {
+
+    margin: 6px 0 0;
+
+    font-size: 17px;
+
+    color: #ffe56b;
+
+    font-weight: bold;
+
+}
+
+
+/* CLOSE BUTTON */
+
+.profile-close {
+
+    position: absolute;
+
+    z-index: 5;
+
+    right: 15px;
+
+    top: 12px;
+
+    width: 38px;
+
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.15);
+
+    color: white;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+}
+
+
+.profile-close:hover {
+
+    background:
+        rgba(255, 255, 255, 0.3);
+
+}
+
+
+/* DETAILS */
+
+.profile-details {
+
+    padding: 15px 30px;
+
+}
+
+
+.profile-row {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 15px 5px;
+
+    border-bottom:
+        1px solid #e7edf3;
+
+}
+
+
+.profile-row > span {
+
+    width: 40px;
+
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #edf5ff;
+
+    font-size: 19px;
+
+}
+
+
+.profile-row label {
+
+    display: block;
+
+    color: #788797;
+
+    font-size: 12px;
+
+    margin-bottom: 3px;
+
+}
+
+
+.profile-row strong {
+
+    display: block;
+
+    color: #183f67;
+
+    font-size: 15px;
+
+    word-break: break-word;
+
+}
+
+
+/* DONE BUTTON */
+
+.profile-done {
+
+    display: block;
+
+    margin: 20px auto 28px;
+
+    padding: 13px 28px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #164676;
+
+    color: white;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+}
+
+
+.profile-done:hover {
+
+    transform: translateY(-2px);
+
+    background: #0f355b;
+
+}
+
+
+/* MEMBER CARD BUTTON */
+
+.member button {
+
+    margin-top: 10px;
+
+    padding: 8px 14px;
+
+    border-radius: 8px;
+
+    border: 1px solid #2868ad;
+
+    background: white;
+
+    color: #2868ad;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+.member button:hover {
+
+    background: #2868ad;
+
+    color: white;
+
+}
+
+/* =========================================
+   MOBILE RESPONSIVE DESIGN
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+
+    /* MAIN PAGE */
+
+    .page {
+        width: 100%;
+        min-height: 100vh;
+
+        padding: 25px 15px;
+
+        box-sizing: border-box;
+    }
+
+
+    .page h1 {
+        font-size: 30px;
+        line-height: 1.15;
+    }
+
+
+    .page h2 {
+        font-size: 22px;
+    }
+
+
+    .page p {
+        font-size: 15px;
+    }
+
+
+    /* BUTTONS */
+
+    button {
+        max-width: 100%;
+
+        font-size: 15px;
+
+        padding: 12px 18px;
+    }
+
+
+    /* PROJECT TEAM */
+
+    .project-team {
+
+        width: 100%;
+
+        max-width: 100%;
+
+        margin-top: 25px;
+
+        padding: 22px 15px;
+
+        border-radius: 18px;
+
+        box-sizing: border-box;
+    }
+
+
+    .team-title {
+        font-size: 19px;
+    }
+
+
+    .team-members {
+
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+
+    .member {
+
+        width: 100%;
+
+        box-sizing: border-box;
+
+        padding: 15px;
+    }
+
+
+    /* PROFILE POPUP */
+
+    .profile-overlay {
+
+        padding: 10px;
+
+        align-items: center;
+    }
+
+
+    .profile-modal {
+
+        width: 100%;
+
+        max-width: 100%;
+
+        max-height: 92vh;
+
+        border-radius: 18px;
+    }
+
+
+    .profile-header {
+
+        padding: 25px 20px;
+
+        gap: 14px;
+    }
+
+
+    .profile-avatar {
+
+        width: 65px;
+
+        height: 65px;
+
+        font-size: 34px;
+
+        flex-shrink: 0;
+    }
+
+
+    .profile-header h2 {
+
+        font-size: 22px;
+    }
+
+
+    .profile-header p {
+
+        font-size: 14px;
+    }
+
+
+    .profile-details {
+
+        padding: 10px 18px;
+    }
+
+
+    .profile-row {
+
+        gap: 10px;
+
+        padding: 12px 0;
+    }
+
+
+    .profile-row > span {
+
+        width: 35px;
+
+        height: 35px;
+
+        flex-shrink: 0;
+    }
+
+
+    .profile-row strong {
+
+        font-size: 14px;
+    }
+
+
+    /* TRAFFIC MAP */
+
+    .interactive-map {
+
+        width: 100%;
+
+        padding: 10px;
+
+        border-radius: 15px;
+
+        box-sizing: border-box;
+
+        overflow: hidden;
+    }
+
+
+    .result-network {
+
+        width: 100%;
+
+        height: auto;
+    }
+
+
+    .map-legend {
+
+        gap: 10px;
+
+        font-size: 11px;
+    }
+
+
+    /* TRAFFIC CARDS */
+
+    .traffic-results {
+
+        grid-template-columns: 1fr !important;
+
+        gap: 15px;
+    }
+
+
+    .traffic-card {
+
+        width: 100%;
+
+        box-sizing: border-box;
+    }
+
+
+    /* RECOMMENDATION */
+
+    .recommendation-card {
+
+        width: 100%;
+
+        box-sizing: border-box;
+
+        padding: 20px;
+    }
+
+
+    .recommendation-card h2 {
+
+        font-size: 24px;
+    }
+
+
+    /* EQUATIONS */
+
+    .equation-card,
+    .matrix-card,
+    .result-card,
+    .step-card,
+    .insight-card {
+
+        width: 100%;
+
+        box-sizing: border-box;
+
+        overflow-x: auto;
+    }
+
+
+    .matrix-equation {
+
+        font-size: 15px;
+
+        white-space: nowrap;
+    }
+
+
+    /* SELECTION SCREEN */
+
+    .selection-success {
+
+        width: 100%;
+
+        max-width: 100%;
+
+        margin: 30px auto;
+
+        padding: 30px 20px;
+
+        box-sizing: border-box;
+    }
+
+
+    .selection-success h2 {
+
+        font-size: 27px;
+    }
+
+
+    .selected-flow {
+
+        font-size: 22px;
+    }
+
+
+    /* FOOTER */
+
+    .footer-text {
+
+        font-size: 11px;
+
+        padding: 0 10px;
+    }
+
+}
