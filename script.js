@@ -1899,13 +1899,13 @@ function showMemberProfile(member) {
 
         details = {
 
-            name: "CHEZHIYAN",
+            name: "ELANCHEZHIYAN B",
 
-            register: "1914260045",
+            register: "1914260007",
 
-            department: "—",
+            department: "—MECHANICAL ENGINEERING",
 
-            year: "—",
+            year: "1st",
 
             email: "—",
 
@@ -1922,13 +1922,13 @@ function showMemberProfile(member) {
 
         details = {
 
-            name: "ROSHAN",
+            name: "ROSHAN AKKTHAR J",
 
-            register: "1914260046",
+            register: "1925260014",
 
-            department: "—",
+            department: "—AI & ML",
 
-            year: "—",
+            year: "1st",
 
             email: "—",
 
